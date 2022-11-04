@@ -1,0 +1,37 @@
+.hero-img {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+.fa-circle-user {
+    color: white !important;
+}
+.username-color {
+    color: white;
+}
+.button-menu {
+    background-color:transparent;
+}
+.cek-resi {
+    color: white;
+}
+.cek-resi-positioning {
+    position:absolute;
+    top: 40%;
+    bottom: 60%;
+    left: 21%;
+    right: 90%;
+}
+.cek-resi-input {
+    height: 50px !important;
+    width: 750px;
+    border-radius: 5px;
+    border: none;
+}
+.logo-sizing {
+    width : 200px;
+}
+.is-horizontal-center {
+    justify-content: center;
+}

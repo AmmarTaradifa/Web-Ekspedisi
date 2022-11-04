@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Welcome to Ekspedisi X!</title>
+    <link
+      rel="stylesheet"
+      href="/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+
+    <link rel="stylesheet" href="/css/all.min.css"/>
+  </head>
+  <body>
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/jquery.nicescroll.min.js"></script>
+    <div class="columns">
+      <div class="column is-2 bg-custom menu-container px-1 pl-5 pr-5">
+        <!-- Sidebar -->
+        <div class="menu-wrapper">
+          <aside class="menu">
+            <a href="#" class="logo ml-6">
+              <img src="./assets/logo.png" width="150px" alt="" />
+            </a>
+            <ul class="menu-list">
+                <li>
+                  <a href="/"><i class="fas fa-thin fa-house mr-3"></i>Home</a>
+                </li>
+                <li>
+                  <a href="/user"><i class="fas fa-thin fa-user mr-3"></i>User</a>
+                </li>
+                <li>
+                  <a href="/cabang"><i class="fas fa-thin fa-code-branch mr-3"></i>Cabang</a>
+                </li>
+                <li>
+                  <a href="/order"><i class="fas fa-thin fa-cart-shopping mr-3"></i>Order</a>
+                </li>
+                <li>
+                  <a href="ongkir"><i class="fas fa-thin fa-truck-fast mr-3"></i>Ongkir</a>
+                </li>
+                <li>
+                <a  href="/login/logout"><i class="fas fa-thin fa-door-closed mr-3"></i>Logout</a>
+                </li>
+              </ul>
+          </aside>
+        </div>
+        <!-- Sidebar -->
+      </div>
+      <!-- Content -->
+      <div
+        class="welcome column is-flex is-justify-content-center is-align-content-center"
+      >
+        <div class="has-text-centered m-auto">
+          <h3 class="is-size-3">Hello Admin <%= userName %>!</h3>
+          <h1 class="is-size-1">Welcome to Ekspedisi X</h1>
+          <img src="/assets/dashboard-img.png" alt="dashboard-img" />
+        </div>
+        <!-- Content -->
+      </div>
+    </div>
+  </body>
+</html>
+
+
+
+
+
+

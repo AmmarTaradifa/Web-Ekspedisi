@@ -1,0 +1,40 @@
+.px-1, .p-1 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+.py-1, .p-1 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    }
+.menu-container {
+    position: relative;
+    padding-top: 25px;
+ 
+    z-index: 10;
+    height: 100vh;
+}
+.menu-list li a {
+    color : white; 
+}
+.menu-list {
+    padding-top: 50px;
+}
+.welcome{
+    height: 100vh;
+    background-color:#E8E8E8;
+}
+.bg-custom {
+    background-color: #0E242E;
+}
+
+.button {
+    background-color: #3480A3;
+    color: white;
+    position: relative;
+}
+.fullwidth {
+    width:100%;
+}
+.role-form {
+    position: relative;
+}

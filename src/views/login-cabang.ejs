@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Cabang</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="/css/style-login.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <div class="columns is-flex fullheight">
+      <div class="column is-4 is-flex is-align-content-center pl-6 ml-5">
+        <div class="wrapper">
+          <h3 class="is-size-3">Selamat datang di</h3>
+          <img src="./assets/logo-alt.png" alt="logo" width="300px" />
+          <div class="column">
+            <div class="card">
+			<form action="/login-cabang/auth_cabang" method="POST" class="col-md-4 card">
+              <div class="card-content">
+                <div class="content">
+                  <div class="wrapper content-layout">
+                    <div class="content-layout">
+                      <div>
+                        <label for="username">Email</label>
+                        <br />
+						<input type="email" name="email" class="text-area" placeholder="Masukan email" required>
+                      </div>
+					  <br>
+                      <div>
+                        <label for="password">Password</label>
+                        <br />
+						<input type="password" name="pass" class="text-area" placeholder="Masukan password" required>
+                      </div>
+                    </div>
+                    <br />
+                    <div class="login-btn">
+                      <button class="button">Log in</button>
+                    </div>
+					<%if (pesanFlash) { %>
+						  <strong><%= statusFlash %></strong> 
+						  <%= pesanFlash %>
+						  </button>
+						</div>
+					  <% } %>
+                  </div>
+                </div>
+              </div>
+			  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column is-6 is-flex is-justify-content-center">
+        <img src="./assets/customer-img.svg" alt="customer-img" width="750px" />
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cabang</title>
+    <link
+      rel="stylesheet" href="/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet" href="/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/dataTables.bulma.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+
+  </head>
+  <body>
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/jquery.nicescroll.min.js"></script>
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.bulma.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+   
+    <div class="columns">
+      <div class="column is-2">
+        <!-- Sidebar -->
+        <div class="bg-custom menu-container px-1 pl-5 pr-5">
+          <div class="menu-wrapper">
+            <aside class="menu">
+              <a href="#" class="logo ml-4">
+                <img src="./assets/logo.png" width="150px" alt="" />
+              </a>
+              <ul class="menu-list">
+                <li>
+                  <a href="/"><i class="fas fa-thin fa-house mr-3"></i>Home</a>
+                </li>
+                <li>
+                  <a href="/user"><i class="fas fa-thin fa-user mr-3"></i>User</a>
+                </li>
+                <li>
+                  <a href="/cabang"><i class="fas fa-thin fa-code-branch mr-3"></i>Cabang</a>
+                </li>
+                <li>
+                  <a href="/order"><i class="fas fa-thin fa-cart-shopping mr-3"></i>Order</a>
+                </li>
+                <li>
+                  <a href="ongkir"><i class="fas fa-thin fa-truck-fast mr-3"></i>Ongkir</a>
+                </li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+        <!-- Sidebar -->
+      </div>
+      <!-- Content -->
+      <div class="column is-10 mt-3 ">
+        <div
+          class="is-flex is-justify-content-space-between is-align-items-center"
+        >
+          <div class="list-container">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+              <h3 class="is-size-2">Cabang</h3>
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Cabang</a></li>
+              </ul>
+            </nav>
+          </div>
+          <button class="button mr-5 js-modal-trigger" data-toggle="modal" data-target="#myModalAdd">+ Add Cabang</button>
+        </div>
+        <div class="is-flex is-justify-content-center">
+
+          <div class="card fullwidth">
+            <div class="card-content fullwidth">
+              <table class="table fullwidth" id="mytable">
+                <thead> 
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% dataCabang.forEach(item => { %>
+                        <tr>
+                          <td><%= item.admin_id %></td>
+                          <td><%= item.admin_name%></td>
+                          <td><%= item.admin_email%></td>
+                          <td><%= item.role%></td>
+                          <td>
+                            <a href="javascript:void(0);" class="button mr-5 js-modal-trigger edit" data-id="<%= item.admin_id%>" data-admin_name="<%= item.admin_name%>" data-admin_email="<%= item.admin_email%>">Edit</a>
+                            <a href="javascript:void(0);" class="button mr-5 js-modal-trigger delete" data-id="<%= item.admin_id%>">Delete</a>
+                          </td>
+                        </tr>
+                    <%})%>
+                </tbody>
+              </div>
+            </div>
+          </div>
+        </div>
+       </table>
+      </div>
+      <!-- Content -->
+      <!-- Modal -->
+      <form action="/tambah_cabang" method="post">
+      <div id="myModalAdd"  class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <div class="box">
+            <h3 class="is-size-3">Tambah Cabang</h3>
+            <div class="columns is-justify-content-center is-align-content-center is-text-centered">
+              <div class=" column">
+                <p>Nama Cabang</p>
+                <input type="text" name="admin_name" class="fullwidth" placeholder="Username" required>
+              </div>
+              <div class=" column">
+                <p>Email</p>
+                <input type="text" name="admin_email" class="fullwidth" placeholder="Email" required>
+              </div>
+              <div class=" column">
+                <p>Password</p>
+                <input type="password" name="admin_password" class="fullwidth" placeholder="Password" required>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column is-10"></div>
+              <div class="column">
+                <button type="submit" class="button">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+    </form>
+
+
+    <form action="/edit_cabang" method="post">
+      <div id="EditModal"  class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <div class="box">
+            <h3 class="is-size-3">Edit Cabang</h3>
+            <div class="columns is-justify-content-center is-align-content-center is-text-centered">
+              <div class=" column">
+                <p>Nama Cabang</p>
+                <input type="text" name="admin_name" class="fullwidth admin_name" placeholder="Username" required>
+              </div>
+              <div class=" column">
+                <p>Email</p>
+                <input type="text" name="admin_email" class="fullwidth admin_email" placeholder="Email" required>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column is-10"></div>
+              <div class="column">
+                <input type="hidden" name="admin_id" class="admin_id">
+                <button type="submit" class="button">Update</button>
+              </div>
+            </div>
+          </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+
+        </div>
+      </div>
+    </form>
+
+
+    <form action="/hapus_cabang" method="post">
+      <div id="DeleteModal"  class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <div class="box">
+            <h3 class="is-size-3">Hapus Cabang</h3>
+            <div class="columns is-justify-content-center is-align-content-center is-text-centered">
+              <div class=" column">
+                <strong>Anda yakin mau menghapus data ini?</strong>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column is-10"></div>
+              <div class="column">
+                <input type="hidden" name="admin_id" class="fullwidth admin_id2" required>
+                <button type="submit" class="button">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+    </form>
+
+<script>
+   $(document).ready(function(){
+            //tampilkan data ke modal untuk edit
+      $('#mytable').on('click','.edit',function(){
+        var admin_id = $(this).data('id');
+        var admin_name = $(this).data('admin_name');
+        var admin_email = $(this).data('admin_email');
+        $('#EditModal').modal('show');
+        $('.admin_name').val(admin_name);
+        $('.admin_email').val(admin_email);
+        $('.admin_id').val(admin_id);
+      });
+            //tampilkan modal hapus record
+            $('#mytable').on('click','.delete',function(){
+        var admin_id = $(this).data('id');
+        $('#DeleteModal').modal('show');
+        $('.admin_id2').val(admin_id);
+      });
+ 
+    });
+</script>
+
+  </body>
+</html>

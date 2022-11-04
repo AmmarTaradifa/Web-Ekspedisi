@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Order</title>
+    <link
+      rel="stylesheet" href="/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet" href="/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/dataTables.bulma.min.css" />
+  </head>
+  <body>
+    <script src="/js/jquery-3.6.0.min.js" ></script>
+    <script src="/js/jquery.nicescroll.min.js"></script>
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.bulma.min.js"></script>
+    <script src="/js/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <!-- <script src="/js/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
+    <script src="/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+    
+    <div class="columns">
+      <div class="column is-2">
+        <!-- Sidebar -->
+        <div class="bg-custom menu-container px-1 pl-5 pr-5">
+          <div class="menu-wrapper">
+            <aside class="menu">
+              <a href="#" class="logo ml-4">
+                <img src="./assets/logo.png" width="150px" alt="" />
+              </a>
+              <ul class="menu-list">
+                <li>
+                  <a href="/"><i class="fas fa-thin fa-house mr-3"></i>Home</a>
+                </li>
+                <li>
+                  <a href="/user-cabang"><i class="fas fa-thin fa-user mr-3"></i>User</a>
+                </li>
+                <li>
+                  <a href="/order-cabang"><i class="fas fa-thin fa-cart-shopping mr-3"></i>Order</a>
+                </li>
+                <li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+        <!-- Sidebar -->
+      </div>
+      <!-- Content -->
+      <div class="column is-10 mt-3 ">
+        <div
+          class="is-flex is-justify-content-space-between is-align-items-center"
+        >
+          <div class="list-container">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+              <h3 class="is-size-2">Order</h3>
+              <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/order">Order</a></li>
+              </ul>
+            </nav>
+          </div>
+          <button class="button mr-5 js-modal-trigger" data-toggle="modal" data-target="#myModalAdd">+ Add Order</button>
+        </div>
+        <div class="is-flex is-justify-content-center">
+
+          <div class="card fullwidth">
+            <div class="card-content fullwidth">
+              <table class="table fullwidth" id="mytable">
+                <thead> 
+                  <tr>
+                    <th>ID Order</th>
+                    <th>Nama Customer</th>
+                    <th>Cabang</th>
+                    <th>Tujuan</th>
+                    <th>Nama Barang</th>
+                    <th>Berat</th>
+                    <th>Total Harga</th>
+                    <th>Status</th>
+                    <th>Resi</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% listOrder.forEach(item => { %>
+                        <tr>
+                          <td><%= item.id_order %></td>
+                          <td><%= item.nama_user%></td>
+                          <td><%= item.nama_admin%></td>
+                          <td><%= item.tujuan%></td>
+                          <td><%= item.nama_barang%></td>
+                          <td><%= item.berat%></td>
+                          <td><%= item.total_harga%></td>
+                          <td><%= item.status%></td>
+                          <td><%= item.resi%></td>
+                          <td>
+                            <a href="javascript:void(0);" class="button mr-5 js-modal-trigger edit" data-id="<%= item.id_order%>" data-id_user="<%= item.id_nama_user%>" data-admin_id="<%= item.admin_name%>" data-id_ongkir="<%= item.tujuan%>" data-nama_barang="<%= item.nama_barang%>" data-berat="<%= item.berat%>" data-total_harga="<%= item.total_harga%>" data-status="<%= item.status%>">Edit</a>
+                            <!-- <a href="javascript:void(0);" class="button mr-5 js-modal-trigger delete" data-id="<%= item.id_order%>"> </a> -->
+                          </td>
+                        </tr>
+                    <%})%>
+                </tbody>
+              </div>
+            </div>
+          </div>
+        </div>
+       </table>
+      </div>
+      <!-- Content -->
+      <!-- Modal -->
+      <form action="/tambah_order" method="post">
+      <div id="myModalAdd"  class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <div class="box">
+            <h3 class="is-size-3">Tambah Order</h3>
+            <div class="columns is-justify-content-center is-align-content-center is-text-centered">
+              <div class=" column">
+                <p>Nama Customer</p>
+                <!-- <input type="text" name="nama_user" class="fullwidth" placeholder="Nama Customer" required> -->
+                   <select name="nama_user" id="nama_user"  class="fullwidth">
+                    <% listUser.forEach((item)=>{ %>
+                      <option value="<%= item.id_user %>"><%= item.nama_user %></option>
+                    <%}) %>
+                  </select>
+              </div>
+              <div class=" column">
+                <p>Cabang</p>
+                <!-- <input type="text" name="nama_admin" class="fullwidth" placeholder="Cabang" required> -->
+                <select name="nama_admin" id="nama_admin" class="fullwidth">
+                  <% listAdmin.forEach((item)=>{ %>
+                    <option value="<%= item.admin_id %>"><%= item.admin_name %></option>
+                  <%}) %>
+                </select>
+              </div>
+              <div class=" column">
+                <p>Tujuan</p>
+                <!-- <input type="text" name="tujuan" class="fullwidth" placeholder="Nama Barang" required> -->
+                <select name="tujuan" id="tujuan"  class="fullwidth">
+                  <% listOngkir.forEach((item)=>{ %>
+                    <option value="<%= item.id_ongkir %>"><%= item.tujuan %></option>
+                  <%}) %>
+                  </select>
+              </div>
+              
+            </div>
+            <div class="columns">
+              <div class=" column">
+                <p>Nama Barang</p>
+                <input type="text" name="nama_barang" class="fullwidth" placeholder="Nama Barang" required>
+              </div>
+              <div class=" column">
+                <p>Berat</p>
+                <input type="text" name="berat" class="fullwidth" placeholder="Berat" required>
+              </div>
+              <!-- <div class=" column">
+                <p>Total Harga</p>
+                <input type="text" name="total_harga" class="fullwidth" placeholder="Total Harga" required>
+              </div> -->
+            </div>
+            <div class="columns">
+              <div class="column is-10"></div>
+              <div class="column">
+                <button type="submit" class="button">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+    </form>
+
+
+    <form action="/edit_order" method="post">
+      <div id="EditModal"  class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <div class="box">
+            <h3 class="is-size-3">Edit Order</h3>
+            <div class="columns is-justify-content-center is-align-content-center is-text-centered">
+              <div class=" column">
+                <p>Nama Customer</p>
+                <select name="nama_user" id="nama_user"  class="fullwidth nama_user">
+                  <% listUser.forEach((item)=>{ %>
+                  <option value="<%= item.id_user%>" required><%= item.nama_user%></option>
+                  <%})%>
+                </select>
+              </div>
+              <div class=" column">
+                <p>Cabang</p>
+                <select name="nama_admin" id="nama_admin" class="fullwidth nama_admin">
+                  <% listAdmin.forEach((item)=>{ %>
+                  <option value="<%= item.admin_id%>" required><%= item.admin_name%></option>
+                  <%})%>
+                </select>
+
+              </div>
+              <div class=" column">
+                <p>Tujuan</p>
+                <select name="tujuan" id="nama_admin"  class="fullwidth tujuan">
+                  <% listOngkir.forEach((item)=>{ %>
+                  <option value="<%= item.id_ongkir%>" required><%= item.tujuan%></option>
+                  <%})%>
+                </select>
+
+              </div>
+              
+            </div>
+            <div class="columns">
+              <div class=" column">
+                <p>Nama Barang</p>
+                <input type="text" name="nama_barang" class="fullwidth nama_barang" placeholder="Tujuan" required>
+              </div>
+              <div class=" column">
+                <p>Berat</p>
+                <input type="text" name="berat" class="fullwidth berat" placeholder="Berat" required>
+              </div>
+              <div class=" column">
+                <p>Total Harga</p>
+                <input type="text" name="total_harga" class="fullwidth total_harga" placeholder="Total Harga" readonly>
+              </div>
+              <div class=" column">
+                <p>Status</p>
+                <input type="text" name="status" class="fullwidth status" placeholder="Status" required>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column is-10"></div>
+              <div class="column">
+                <input type="hidden" name="id_order" class="id_order">
+                <button type="submit" class="button">Update</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+    </form>
+
+
+    <form action="/hapus_order" method="post">
+      <div id="DeleteModal"  class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <div class="box">
+            <h3 class="is-size-3">Hapus Order</h3>
+            <div class="columns is-justify-content-center is-align-content-center is-text-centered">
+              <div class=" column">
+                <strong>Anda yakin mau menghapus data ini?</strong>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column is-10"></div>
+              <div class="column">
+                <input type="hidden" name="id_order" class="fullwidth id_order2" required>
+                <button type="submit" class="button">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+    </form>
+
+<script>
+   $(document).ready(function(){
+            //tampilkan data ke modal untuk edit
+      $('#mytable').on('click','.edit',function(){
+        var id_order = $(this).data('id');
+        var id_user = $(this).data('id_user');
+        var admin_id = $(this).data('admin_id');
+        var id_ongkir = $(this).data('id_ongkir');
+        var nama_barang = $(this).data('nama_barang');
+        var berat = $(this).data('berat');
+        var total_harga = $(this).data('total_harga');
+        var status = $(this).data('status');
+
+        $('#EditModal').modal('show');
+        $('.id_order').val(id_order);
+        $('.id_user').val(id_user);
+        $('.admin_id').val(admin_id);
+        $('.id_ongkir').val(id_ongkir);
+        $('.nama_barang').val(nama_barang);
+        $('.berat').val(berat);
+        $('.total_harga').val(total_harga);
+        $('.status').val(status);
+      });
+            //tampilkan modal hapus record
+        $('#mytable').on('click','.delete',function(){
+        var id_order = $(this).data('id');
+        $('#DeleteModal').modal('show');
+        $('.id_ongkir2').val(id_order);
+      });
+ 
+    });
+</script>
+
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
